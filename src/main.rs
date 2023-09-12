@@ -4,11 +4,11 @@ use rand::Rng;
 
 fn main() {
 
-    // secret
-    let secret_number = rand::thread_rng().gen_range(1..=100);
-    let mut guess = String::new();
-   
     loop {
+        // secret
+        let secret_number = rand::thread_rng().gen_range(1..=100);
+        let mut guess = String::new();
+       
         println!("Please input your Guess!");
         
         // accept input and bind to guess var, also handle error
