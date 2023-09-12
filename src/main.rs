@@ -1,37 +1,24 @@
-use std::io;
-use std::cmp::Ordering;
-use rand::Rng;
+
+// without mut, reassigning will yield compile time error
+// fn main() {
+//     let mut x = 5;
+//     println!("The value of x is {x}");
+//     x = 6;
+//     println!("The value of x is {x}");
+// }
+
+// compile time immutable 
+// const THREE_HOURS_IN_SECONDS: u32 = 60*60*3;
+
 
 fn main() {
-
-    loop {
-        // secret
-        let secret_number = rand::thread_rng().gen_range(1..=100);
-        let mut guess = String::new();
-       
-        println!("Please input your Guess!");
-        
-        // accept input and bind to guess var, also handle error
-        io::stdin()
-            .read_line(&mut guess)
-            .expect("Failed to readline");       
+    let x = 5;
+    let x = x+1;
     
-        // sanitize guess before comparison
-        let guess: u32 = match guess.trim().parse() {
-            Ok(result) => result,
-            Err(_) => continue,
-        };    
-        println!("You guessed {guess}");
-        // println!("The secret number is {secret_number}");
-    
-        match guess.cmp(&secret_number) {
-            Ordering::Less => println!("too small!"),
-            Ordering::Greater => println!("too big!"),
-            Ordering::Equal => {
-                println!("you win!");
-                break;
-            }
-        }
+    // local scope
+    {
+        let x = x*2;
+        println!("The value of x in the inner scope is {x}");
     }
-
+    println!("The value of x is {x}");
 }
